@@ -13,7 +13,9 @@ ENV PATH="${PATH}:/usr/local/texlive/current/bin/x86_64-linux/"
 RUN tlmgr install anyfontsize
 RUN tlmgr install dvipng
 
-# install Python dependencies
-COPY requirements.txt /tmp/
-RUN pip install -r /tmp/requirements.txt
+# we copy the requirements for Sphinx into the image, but we install only pip-licenses.
+# the CI job will install the project deps, collect the licenses and then install the Sphinx
+# dependencies so they do not included in the licenses page.
+COPY requirements.txt /
+RUN pip install pip-licenses
 

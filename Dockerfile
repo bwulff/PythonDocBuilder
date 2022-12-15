@@ -17,5 +17,6 @@ RUN tlmgr install dvipng
 # the CI job will install the project deps, collect the licenses and then install the Sphinx
 # dependencies so they do not included in the licenses page.
 COPY requirements.txt /
+RUN pip install -U pip
 RUN pip install pip-licenses
 
